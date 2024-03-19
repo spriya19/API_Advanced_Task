@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "def87d3e-4174-422c-953f-f5bca17f19c0",
-		"name": "AdvanceAPI_Sprint3",
+		"name": "Advance Sprint3API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33466109"
 	},
@@ -9,103 +9,6 @@
 		{
 			"name": "User API",
 			"item": [
-				{
-					"name": "User Join",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Assertion - Check status code\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"\tpm.response.to.have.status(200);\r",
-									"});\r",
-									"\t\t\t\t\t\t\t\t\t\r",
-									"//Assertion -validate Json response while registering email address\r",
-									"pm.test(\"Successfully Registered New User\", function () {\r",
-									"\tvar response = pm.response.json();\r",
-									"pm.expect(response.isSuccess).to.be.true;\r",
-									"});\r",
-									"\t\t\t\t\t\t\t\t\t\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n{\r\n  \"firstName\": \"test89\",\r\n  \"lastName\": \"priyawkeqa\",\r\n  \"email\": \"priyak1933@gmail.com\",\r\n  \"password\": \"Tester2431@1243\",\r\n  \"terms\": true\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseUrl}}/signup",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "unsuccess signup",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"//Assertion-1 Check the status code\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"//Assertion-2 check the unsuccess join\r",
-									"pm.test(\"Registration Unsuccessful\", function () {\r",
-									"\tvar response = pm.response.json();\r",
-									"pm.expect(response.isSuccess).to.be.false;\r",
-									"pm.expect(response.message).to.equal(\"Register error - Email address has been used in registration.\");\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"firstName\": \"team11\",\r\n  \"lastName\": \"Raja\",\r\n  \"email\": \"priyak86@gmail.com\",\r\n  \"password\": \"test34\",\r\n  \"terms\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseUrl}}/signup",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Signin API",
 					"event": [
@@ -160,127 +63,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/signin",
+							"raw": "{{BaseUrl}}/authentication/signin",
 							"host": [
 								"{{BaseUrl}}"
 							],
 							"path": [
+								"authentication",
 								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Invalid Signin API",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Assertion1 - Check status code\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{authToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"rememberMe\": false,\r\n  \"email\": \"priyak86@gmail.com\",\r\n  \"password\": \"Pass12\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseUrl}}signin",
-							"host": [
-								"{{BaseUrl}}signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Verify Email",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"//Aessertion Check the status code\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"//Assertion-2 check Email Verification unsuccessfull\r",
-									"\r",
-									"pm.test(\"SendVerificationEmail\", function () {\r",
-									"   var response = pm.response.json();\r",
-									"pm.expect(response.success).to.be.false;\r",
-									"pm.expect(response.message).to.equal(\"Email Verification Failed\");\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{authToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseUrl}}/SendVerificationEmail?emailId=priyak8@gmail.com\n",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"SendVerificationEmail"
-							],
-							"query": [
-								{
-									"key": "emailId",
-									"value": "priyak8@gmail.com\n"
-								}
 							]
 						}
 					},
@@ -358,11 +147,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/addLanguage",
+							"raw": "http://localhost:60190/profile/profile/addLanguage",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"addLanguage"
 							]
 						}
@@ -415,11 +208,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ProfileUrl}}/getLanguage",
+							"raw": "http://localhost:60190/profile/profile/getLanguage",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"getLanguage"
 							]
 						}
@@ -498,11 +295,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/updateLanguage",
+							"raw": "http://localhost:60190/profile/profile/updateLanguage",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"updateLanguage"
 							]
 						}
@@ -585,11 +386,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/deleteLanguage",
+							"raw": "http://localhost:60190/profile/profile/deleteLanguage",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"deleteLanguage"
 							]
 						}
@@ -676,11 +481,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/addSkill",
+							"raw": "http://localhost:60190/profile/profile/addSkill",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"addSkill"
 							]
 						}
@@ -732,11 +541,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ProfileUrl}}/getSkill",
+							"raw": "http://localhost:60190/profile/profile/getSkill",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"getSkill"
 							]
 						}
@@ -764,10 +577,9 @@
 									"// Assertion -3 Successful skill update\r",
 									"  if (response.success === true) {\r",
 									"pm.test(\"Validate Updated Skill Successfully\", function () {\r",
-									"\tpm.expect(response.success).to.be.true;\r",
-									"  var skillId = pm.environment.get(\"skillid\"); \r",
-									"\tpm.expect(skillId).to.exist; \r",
-									"\t\t\t\t\t\t\t\t\t           \r",
+									"\t  pm.expect(response.success).to.be.true;\r",
+									"      var skillId = pm.environment.get(\"skillid\"); \r",
+									"\t  pm.expect(skillId).to.exist;\r",
 									"});\r",
 									"\t} \r",
 									"// Assertion -4 Duplicate skill\r",
@@ -778,10 +590,11 @@
 									"});\r",
 									"    } \r",
 									"// Assertion -5 while adding new skill Error\r",
-									"else if (message === \"Error while adding new skill '' is not a valid 24 digit hex string.\") {\r",
-									" pm.test(\"Unable to Update Skill without ID\", function () {\r",
-									"\tpm.expect(response.success).to.be.false;\r",
-									"\tpm.expect(response.message).to.equal(\"Error while adding new skill '' is not a valid 24 digit hex string.\");\r",
+									"else if (message === \"Error while adding new skill '' is not a valid 24 digit hex string.\") \r",
+									"   {\r",
+									"      pm.test(\"Unable to Update Skill without ID\", function () {\r",
+									"\t  pm.expect(response.success).to.be.false;\r",
+									"\t  pm.expect(response.message).to.equal(\"Error while adding new skill '' is not a valid 24 digit hex string.\");\r",
 									"});\r",
 									"\t}\r",
 									"}\r",
@@ -791,7 +604,7 @@
 									"pm.test(\"Unable to Update Skill without User being Authenticated\", function () {\r",
 									"   pm.expect(pm.response.body).to.be.undefined;\r",
 									"});\r",
-									"}"
+									"    }"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -821,11 +634,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/updateSkill",
+							"raw": "http://localhost:60190/profile/profile/updateSkill",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"updateSkill"
 							]
 						}
@@ -901,11 +718,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/deleteSkill",
+							"raw": "http://localhost:60190/profile/profile/deleteSkill",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"deleteSkill"
 							]
 						}
@@ -997,11 +818,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/addCertification",
+							"raw": "http://localhost:60190/profile/profile/addCertification",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"addCertification"
 							]
 						}
@@ -1065,11 +890,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/getCertification",
+							"raw": "http://localhost:60190/profile/profile/getCertification",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"getCertification"
 							]
 						}
@@ -1145,11 +974,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/updateCertification",
+							"raw": "http://localhost:60190/profile/profile/updateCertification",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"updateCertification"
 							]
 						}
@@ -1223,11 +1056,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/deleteCertification",
+							"raw": "http://localhost:60190/profile/profile/deleteCertification",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"deleteCertification"
 							]
 						}
@@ -1311,11 +1148,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/addListing",
+							"raw": "http://localhost:51689/listing/listing/addListing",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"addListing"
 							]
 						}
@@ -1390,11 +1231,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/getMultipleServiceListing",
+							"raw": "http://localhost:51689/listing/listing/getMultipleServiceListing",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"getMultipleServiceListing"
 							]
 						}
@@ -1471,11 +1316,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/GetService/?id={{listingid}}",
+							"raw": "http://localhost:51689/listing/listing/GetService/?id={{listingid}}",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"GetService",
 								""
 							],
@@ -1548,11 +1397,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/getBalance",
+							"raw": "http://localhost:51689/listing/listing/getBalance",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"getBalance"
 							]
 						}
@@ -1636,11 +1489,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/toggleIsActive",
+							"raw": "http://localhost:51689/listing/listing/toggleIsActive",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"toggleIsActive"
 							]
 						}
@@ -1664,9 +1521,8 @@
 									"if (responseBody.success === false) {\r",
 									"    // Log default image URL\r",
 									"    console.log(\"Default Image URL:\", responseBody.defaultImg);\r",
-									"    // You can further process or assert based on your requirements\r",
 									"} else {\r",
-									"    // Handle success response\r",
+									"    // Check the success response\r",
 									"    console.log(\"Success:\", responseBody.success);\r",
 									"}\r",
 									""
@@ -1692,11 +1548,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/getWorkSample/?id={{listingid}}",
+							"raw": "http://localhost:51689/listing/listing/getWorkSample/?id={{listingid}}",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"getWorkSample",
 								""
 							],
@@ -1761,11 +1621,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ListingUrl}}/getCategories",
+							"raw": "http://localhost:51689/listing/listing/getCategories",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"getCategories"
 							]
 						}
@@ -1838,11 +1702,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ListingUrl}}/deleteServiceListing",
+							"raw": "http://localhost:51689/listing/listing/deleteServiceListing",
+							"protocol": "http",
 							"host": [
-								"{{ListingUrl}}"
+								"localhost"
 							],
+							"port": "51689",
 							"path": [
+								"listing",
+								"listing",
 								"deleteServiceListing"
 							]
 						}
@@ -1913,11 +1781,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{ProfileUrl}}/addInfo",
+							"raw": "http://localhost:60190/profile/profile/addInfo",
+							"protocol": "http",
 							"host": [
-								"{{ProfileUrl}}"
+								"localhost"
 							],
+							"port": "60190",
 							"path": [
+								"profile",
+								"profile",
 								"addInfo"
 							]
 						}
@@ -2107,27 +1979,23 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"//Assertion -1 Check the status code\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Assertion: Validate the response while getting all Notifications.\r",
 									"var statusCode = pm.response.code;\r",
 									"\r",
 									"if (statusCode === 200) {\r",
 									"    var response = pm.response.json();\r",
 									"    if (response.success === true) {\r",
-									"        pm.test(\"Successfully Get Notification\", function () {\r",
+									"        pm.test(\"Successfully Load More Notifications\", function () {\r",
 									"            pm.response.to.have.status(200);\r",
 									"            pm.expect(response.success).to.be.true;\r",
+									"            pm.expect(response.userNotifications).to.be.an('array');\r",
+									"            pm.expect(response.totalCount).to.exist;\r",
 									"        });\r",
 									"    }\r",
-									"}\r",
-									" else {\r",
-									"    // check the category failure response\r",
-									"    console.log(\"Success is false\");\r",
+									"} else if (statusCode === 401) {\r",
+									"     pm.test(\"Unable to Load More Notifications because user is not Authenticated\", function () {\r",
+									"        var response = pm.response.body;\r",
+									"        pm.expect(response).to.be.undefined();\r",
+									"    });\r",
 									"}\r",
 									""
 								],
@@ -2162,7 +2030,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:60190/notification/notification/?loadMore=5&offSet=0&_=1710713766622",
+							"raw": "http://localhost:60190/notification/notification/getNotification/?loadMore=5&offSet=5&_=1710890671702",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2171,6 +2039,7 @@
 							"path": [
 								"notification",
 								"notification",
+								"getNotification",
 								""
 							],
 							"query": [
@@ -2180,11 +2049,11 @@
 								},
 								{
 									"key": "offSet",
-									"value": "0"
+									"value": "5"
 								},
 								{
 									"key": "_",
-									"value": "1710713766622"
+									"value": "1710890671702"
 								}
 							]
 						}
